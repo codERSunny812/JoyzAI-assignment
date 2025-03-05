@@ -1,12 +1,75 @@
-# React + Vite
+# Org Chart Validator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Overview
+The **Org Chart Validator** is a React-based tool that validates organizational hierarchy from a CSV file. It checks for role-based validation and detects cycles in reporting structures to ensure a valid org chart.
 
-Currently, two official plugins are available:
+## 🚀 Features
+- ✅ **CSV Upload:** Upload an organization chart in CSV format.
+- ✅ **Role Validation:** Ensures correct reporting relationships:
+  - **Root** should not report to anyone.
+  - **Admin** should report only to **Root**.
+  - **Manager** should report only to **Admin** or another **Manager**.
+  - **Caller** should report only to a **Manager**.
+- ✅ **Cycle Detection:** Prevents loops where an employee indirectly reports to themselves.
+- ✅ **User-Friendly UI:** Styled with Tailwind CSS for better readability.
+- ✅ **Error Reporting:** Displays validation errors in red.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📂 Project Structure
+```
+org-chart-validator/
+│-- src/
+│   │-- components/
+│   │   │-- OrgChartValidator.jsx
+│   │-- App.js
+│   │-- index.js
+│-- public/
+│-- package.json
+│-- README.md
+```
 
-## Expanding the ESLint configuration
+## 🔧 Installation & Usage
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/your-repo/org-chart-validator.git
+cd org-chart-validator
+```
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 2️⃣ Install Dependencies
+```sh
+npm install
+```
+
+### 3️⃣ Run the Project
+```sh
+npm start
+```
+
+## 📑 CSV Format Example
+The CSV file should be structured as follows:
+```csv
+FullName,Email,Role,ReportsTo
+Alice Johnson,alice@example.com,Root,
+Bob Smith,bob@example.com,Admin,alice@example.com
+Charlie Davis,charlie@example.com,Manager,bob@example.com
+David Lee,david@example.com,Caller,charlie@example.com
+```
+
+## 🛠️ Built With
+- **React.js** - Frontend library
+- **Papaparse** - CSV Parsing
+- **Tailwind CSS** - Styling
+
+## 🏆 Key Functionalities
+- **handleFileUpload** → Reads and parses CSV files.
+- **validateData** → Checks for incorrect reporting structures.
+- **hasCycle** → Uses DFS to detect cycles in the org chart.
+
+## 📝 License
+This project is licensed under the MIT License.
+
+## 🤝 Contributing
+Contributions are welcome! Feel free to submit a PR.
+
+## 📞 Contact
+For questions or feedback, reach out at **sushil812.dev@gmail.com**.
+
